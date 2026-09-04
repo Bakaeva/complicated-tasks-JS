@@ -1,25 +1,51 @@
 "use strict";
 
-// 1) Создать переменную num со значением 266219 (тип данных число)
-let num = 266219;
+// 1). Переменная lang может принимать 2 значения: 'ru' 'en'.
+// Написать условия при котором в зависимости от значения lang будут выводится дни недели на русском или английском языке. Решите задачу
+//   a) через if,
+//   b) через switch-case
+//   c) через многомерный массив без ифов и switch.
 
-// 2) Вывести в консоль произведение (умножение) цифр этого числа. Правильно использовать цикл или методы перебора.
-let result = 1;
-String(num)
-  .split("")
-  .forEach((elem) => (result *= Number(elem)));
-console.log(result);
+let lang = "ru";
 
-// 3) Полученный результат возвести в степень 3, используя только 1 оператор (Math.pow не подходит)
-result = result ** 3;
-//console.log(result);
+// Используется объект, состоящий из двух пар (key, value)
+const weekDays = {
+  ru: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+  en: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+};
 
-// 4) Вывести в консоль первые 2 цифры полученного числа
-let firstTwoDigits = result;
-while (firstTwoDigits >= 100) {
-  firstTwoDigits = Math.floor(firstTwoDigits / 10);
+//-------------------- a) через if
+if (lang == "ru") {
+  console.log(weekDays["ru"]);
+} else if (lang == "en") {
+  console.log(weekDays["en"]);
+} else console.log("Недопустимое значение переменной lang");
+
+//-------------------- b) через switch-case
+switch (lang) {
+  case "ru":
+    console.log(weekDays["ru"]);
+    break;
+  case "en":
+    console.log(weekDays["en"]);
+    break;
+  default:
+    console.log("Недопустимое значение переменной lang");
 }
-// let firstTwoDigits = Number(String(result).substring(0, 2)); // более читабельный, но менее оптимизированный,способ получения первых 2-х цифр
-console.log(firstTwoDigits);
 
-//5) В отдельном репозитории для усложненных уроков, добавить папку или ветку со вторым уроком в свой репозиторий на GitHub
+//-------------------- c) через многомерный массив без if и switch
+console.log(weekDays[lang]);
+
+
+// -------------------------------------------------------------------
+// 2). У нас есть переменная namePerson. Если значение этой переменной “Артем” то вывести в консоль “директор”,
+// если значение “Александр” то вывести в консоль “преподаватель”, с любым другим значением вывести в консоль “студент”
+// Решить задачу с помощью нескольких тернарных операторов, без использования if или switch
+let namePerson = 'Петя';
+let strNamePerson = String(namePerson).toLowerCase();
+
+strNamePerson == 'артем'
+  ? console.log('директор')
+  : strNamePerson == 'александр'
+    ? console.log('преподаватель')
+    : console.log('студент');
